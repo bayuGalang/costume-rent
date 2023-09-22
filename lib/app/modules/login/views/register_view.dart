@@ -1,16 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todolist/app/custom_widget.dart';
-import 'package:todolist/app/modules/login/views/register_view.dart';
-
+import 'package:todolist/app/modules/login/views/login_view.dart';
 import '../controllers/login_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class RegisterView extends GetView<LoginController> {
+  const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
@@ -22,12 +20,12 @@ class LoginView extends GetView<LoginController> {
         children: [
           carrosel(),
           Text(
-            "Silahkan Login",
+            "Silahkan Register",
             style: GoogleFonts.albertSans(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
           ).animate().fadeIn(duration: 700.ms).slide(),
           Text(
-            "Satu Klik Menuju Kontrol Penuh",
+            "Satu Langkah Lagi",
             style: GoogleFonts.albertSans(
                 color: Colors.white, fontWeight: FontWeight.w300, fontSize: 16),
           ).animate().fadeIn(duration: 700.ms).slide(),
@@ -46,15 +44,13 @@ class LoginView extends GetView<LoginController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 customTextfield(context, "Masukan Email Anda", false,
-                        Icons.email_outlined, controller)
-                    .animate().fadeIn(duration: 700.ms).slide(),
+                    Icons.email_outlined, controller).animate().fadeIn(duration: 700.ms).slide(),
                 customTextfield(context, "Masukan Password Anda", true,
-                        Icons.password, controller)
-                    .animate().fadeIn(duration: 700.ms).slide(),
+                    Icons.password, controller).animate().fadeIn(duration: 700.ms).slide(),
                 SizedBox(
                   height: 10,
                 ),
-                fillButton(context, "Login", (){}),
+                fillButton(context, "Register", (){}),
                 Container(
                   width: MediaQuery.sizeOf(context).width / 2,
                   height: 35,
@@ -78,21 +74,20 @@ class LoginView extends GetView<LoginController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Belum Memiliki Akun ? ",
+                      "Sudah Punya Akun ? ",
                       style: GoogleFonts.albertSans(fontSize: 12),
-                    ).animate().fadeIn(duration: 700.ms),
+                    ),
                     GestureDetector(
                         onTap: () {
-                          Get.to(RegisterView(),
-                              transition: Transition.fadeIn);
+                          Get.to(LoginView(), transition: Transition.fadeIn);
                         },
                         child: Text(
-                          "Register",
+                          "Login",
                           style: GoogleFonts.albertSans(
                               fontSize: 12, color: Colors.blue),
-                        )).animate().fadeIn(duration: 700.ms).slide(),
+                        )),
                   ],
-                )
+                ).animate().fadeIn(duration: 700.ms).slide()
               ],
             ),
           ),
